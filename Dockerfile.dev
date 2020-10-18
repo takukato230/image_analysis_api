@@ -1,0 +1,9 @@
+FROM golang:1.14-stretch
+WORKDIR /app
+# COPYの第一引数はdocker-composeのcontextからみたパスになる
+# （docker-composeから動かした場合）
+COPY . .
+
+RUN go get -u github.com/cosmtrek/air
+EXPOSE 8080
+CMD ["air", "-c", "/app/air.conf"]
