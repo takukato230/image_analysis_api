@@ -6,6 +6,7 @@ import (
 )
 
 type Config struct {
+	APPName  string `envconfig:"APP_NAME" default:"image_analysis"`
 	BindPort string `envconfig:"BIND_PORT" default:":8080"`
 }
 
