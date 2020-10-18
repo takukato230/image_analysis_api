@@ -1,7 +1,12 @@
 package handler
 
-import "github.com/labstack/echo"
+import (
+	"github.com/labstack/echo"
+	"log"
+	"net/http"
+)
 
 func UploadFileHandler(c echo.Context) error {
-	panic("not implements!!")
+	log.Println("hello world!!")
+	return c.String(http.StatusOK, "ok")
 }
