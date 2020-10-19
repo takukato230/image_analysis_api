@@ -21,6 +21,6 @@ func NewUploadFileHandlerImpl(useCase applications.UploadFileUseCase) UploadFile
 
 func (h UploadFileHandlerImpl) Handler(c echo.Context) error {
 	ctx := c.(*appctx.APPCtx)
-	statusCode, res := h.useCase.Do(ctx)
+	statusCode, res := h.useCase.DoAnalysis(ctx)
 	return c.JSON(statusCode, res)
 }
