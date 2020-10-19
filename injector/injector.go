@@ -1,6 +1,7 @@
 package injector
 
 import (
+	"github.com/takutakukatokatojapan/image_analysis_api/adapter/gateway"
 	"github.com/takutakukatokatojapan/image_analysis_api/api/server"
 	"github.com/takutakukatokatojapan/image_analysis_api/api/server/handler"
 	"github.com/takutakukatokatojapan/image_analysis_api/api/server/router"
@@ -23,13 +24,17 @@ func init() {
 	}); err != nil {
 		log.Fatal(err)
 	}
+	// gateway ...
+	_ = c.Provide(gateway.NewOCRGateway)
 	// service...
 	_ = c.Provide(service.NewAuthService)
 	_ = c.Provide(service.NewFileLoadingServiceImpl)
 	// use case...
 	_ = c.Provide(applications.NewUploadFileUseCase)
+	_ = c.Provide(applications.NewAnalysisUseCaseImpl)
 	// handler...
 	_ = c.Provide(handler.NewUploadFileHandlerImpl)
+	_ = c.Provide(handler.NewAnalysisHandlerImpl)
 	// router...
 	_ = c.Provide(router.NewV1Router)
 	// server...
