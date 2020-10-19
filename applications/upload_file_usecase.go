@@ -11,7 +11,7 @@ import (
 
 type (
 	UploadFileUseCase interface {
-		Do(ctx *appctx.APPCtx) (int, types.CommonType)
+		DoAnalysis(ctx *appctx.APPCtx) (int, types.CommonType)
 	}
 	UploadFileUseCaseImpl struct {
 		authService        service.AuthService
@@ -26,7 +26,7 @@ func NewUploadFileUseCase(authService service.AuthService, fileLoadingService se
 	}
 }
 
-func (u UploadFileUseCaseImpl) Do(ctx *appctx.APPCtx) (int, types.CommonType) {
+func (u UploadFileUseCaseImpl) DoAnalysis(ctx *appctx.APPCtx) (int, types.CommonType) {
 	if ok := u.authService.CheckMultiPartHeader(ctx); !ok {
 		logger.Default.Warn(ctx.XRequestID, "Headerが正しくありません。")
 		return http.StatusBadRequest, types.ErrorResponse{
